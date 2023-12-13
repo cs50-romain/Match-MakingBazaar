@@ -1,3 +1,6 @@
+# IMPORTANT
+This little program is for funsies and only written to practice implementing a heap in a program. As of 12/13/23 that's pretty much all I needed it to do. Maybe some day I will add a server and give the ability to register and actually level... again could be fun and this project will stay as something for funsies.... funsies!
+
 # Match-MakingBazaar
 
 Match-MakingBazaar is a command-line multiplayer game matchmaking system designed to bring a seamless and competitive gaming experience. The application utilizes a max-heap to efficiently match players based on their skill levels, ensuring fair and engaging matchups.
