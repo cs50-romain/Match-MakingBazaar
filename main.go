@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"github.com/cs50-romain/Match-MakingBazaar/player"
 	"github.com/cs50-romain/Match-MakingBazaar/heap"
 )
@@ -25,11 +26,30 @@ func matchMaking() {
 }
 
 func randomWinner(player_one, player_two *player.Player) {
-	player_one.Skill_lvl++
-	player_one.Wins++
-	player_two.Skill_lvl--
-	player_two.Wins--
-	fmt.Printf("%s wins!\n\n", player_one.Username)
+	player_one_chance := 0
+	random_value_one := rand.Intn(10 - 1) + 1
+	random_value_two := rand.Intn(10 - 1) + 1
+	if random_value_one >= random_value_two {
+		player_one_chance = random_value_one
+	} else {
+		player_one_chance = random_value_two	
+	}
+
+	player_two_chance := rand.Intn(10 - 1) + 1
+
+	if player_one_chance >= player_two_chance {
+		player_one.Skill_lvl++
+		player_one.Wins++
+		player_two.Skill_lvl--
+		player_two.Wins--
+		fmt.Printf("%s wins!\n\n", player_one.Username)
+	} else {
+		player_one.Skill_lvl--
+		player_one.Wins--
+		player_two.Skill_lvl++
+		player_two.Wins++
+		fmt.Printf("%s wins!\n\n", player_two.Username)
+	}
 }
 
 func printStats(players ...*player.Player) {
