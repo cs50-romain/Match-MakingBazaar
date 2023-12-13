@@ -1,14 +1,24 @@
 package heap
 
-import "github.com/cs50-romain/Match-MakingBazaar/player"
+import (
+	"github.com/cs50-romain/Match-MakingBazaar/player"
+)
 
 type Heap struct {
 	len	int
-	data	[]*player.Player
+	Data	[]*player.Player
+}
+
+func Init() *Heap {
+	return &Heap{0, []*player.Player{}}
 }
 
 func (h *Heap) Insert(player *player.Player) {
-	h.data[h.len] = player
+	if h.len == len(h.Data) {
+		h.Data = append(h.Data, player)
+	} else {
+		h.Data[h.len] = player
+	}
 	h.heapifyUp(h.len)
 	h.len++
 }
@@ -18,13 +28,14 @@ func (h *Heap) Pop() *player.Player{
 		return &player.Player{}
 	}
 
-	head_player := h.data[0]
+	head_player := h.Data[0]
 	h.len--
 	if h.len == 0 {
-		h.data = []*player.Player{}
+		h.Data = []*player.Player{}
 		return head_player
 	}
-
+	
+	h.Data[0] = h.Data[h.len]
 	h.heapifyDown(0)
 	return head_player
 }
@@ -35,8 +46,8 @@ func (h *Heap) heapifyUp(idx int) {
 	}
 
 	parent_idx := parentIndex(idx)
-	parent_player := h.data[parent_idx]
-	player := h.data[idx]
+	parent_player := h.Data[parent_idx]
+	player := h.Data[idx]
 
 	if player.Skill_lvl > parent_player.Skill_lvl {
 		h.swap(player, parent_player, idx, parent_idx)
@@ -52,17 +63,17 @@ func (h *Heap) heapifyDown(idx int) {
 	left_child_idx := leftChildIndex(idx)
 	right_child_idx := rightChildIndex(idx)
 
-	if left_child_idx > h.len {
+	if left_child_idx >= h.len {
 		return
 	}
 
-	if right_child_idx > h.len {
+	if right_child_idx >= h.len {
 		return
 	}
 
-	left_player := h.data[left_child_idx]
-	right_player := h.data[right_child_idx]
-	player := h.data[idx]
+	left_player := h.Data[left_child_idx]
+	right_player := h.Data[right_child_idx]
+	player := h.Data[idx]
 
 	if right_player.Skill_lvl > left_player.Skill_lvl && player.Skill_lvl < right_player.Skill_lvl {
 		h.swap(player, right_player, idx, right_child_idx)
@@ -85,6 +96,6 @@ func rightChildIndex(idx int) int {
 }
 
 func (h *Heap) swap(value, value2 *player.Player, idx, idx2 int) {
-	h.data[idx] = value2
-	h.data[idx2] = value
+	h.Data[idx] = value2
+	h.Data[idx2] = value
 }
