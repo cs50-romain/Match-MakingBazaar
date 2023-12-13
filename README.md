@@ -5,6 +5,7 @@ Match-MakingBazaar is a command-line multiplayer game matchmaking system designe
 ## Features
 
 - **Player Registration:** Players can register with a username and skill level, with the information stored in a max-heap.
+   - This is done in the code. There is no actual player registration... although it could be added later on.
 - **Joining Match Queue:** Players can join the matchmaking queue to find opponents, with the system pairing players with similar skill levels using the max-heap.
 - **Matchmaking Algorithm:** The system extracts the top two players from the max-heap for fair matchups and displays match details.
 - **Player Statistics:** Display and update player statistics, including matches played, won, and lost.
@@ -12,7 +13,7 @@ Match-MakingBazaar is a command-line multiplayer game matchmaking system designe
 
 ## Example Workflow
 
-1. **Player Registration:** Players register with usernames and skill levels.
+1. **Player Registration:** Players register with usernames and skill levels. (See above. Players are hard-coded at the moment)
 2. **Join Matchmaking Queue:** Players join the matchmaking queue for fair matchups.
 3. **Match Found:** The system pairs players based on skill levels for an engaging match.
 4. **Update Player Statistics:** Player statistics are updated after each match.
